@@ -79,6 +79,6 @@
         type: int
         description: 是否平滑，0-不平滑，1-平滑
       - name: ovl
-        type: double
-        description: 速度缩放因子，范围[0.0~100.0]
+        type: float
+        description: 速度缩放因子，范围[0~100]
     return: 成功：[0],失败：[errcode]

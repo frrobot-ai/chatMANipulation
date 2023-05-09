@@ -13,10 +13,10 @@
     description: 样条运动PTP
     arguments:
       - name: joint_pos
-        type: double
+        type: float
         description: 目标关节位置，单位[°]
       - name: desc_pos
-        type: double
+        type: float
         description: 目标笛卡尔位姿，单位[mm][°]
       - name: tool
         type: int
@@ -25,14 +25,14 @@
         type: int
         description: 工件号，[0~14]
       - name: vel
-        type: double
-        description: 速度，范围[0.0~100.0]，暂不开放，默认为0.0
+        type: float
+        description: 速度，范围[0~100]，暂不开放，默认为0
       - name: acc
-        type: double
-        description: 加速度，范围[0.0~100.0]，暂不开放，默认为0.0
+        type: float
+        description: 加速度，范围[0~100]，暂不开放，默认为0
       - name: ovl
-        type: double
-        description: 速度缩放因子，[0.0~100.0]
+        type: float
+        description: 速度缩放因子，[0~100]
     return: 成功：[0],失败：[errcode]
 
 - function:
@@ -58,10 +58,10 @@
     description: 新样条指令点
     arguments:
       - name: joint_pos
-        type: double
+        type: float
         description: 目标关节位置，单位[°]
       - name: desc_pos
-        type: double
+        type: float
         description: 目标笛卡尔位姿，单位[mm][°]
       - name: tool
         type: int
@@ -70,17 +70,17 @@
         type: int
         description: 工件号，[0~14]
       - name: vel
-        type: double
-        description: 速度，范围[0.0~100.0]，暂不开放，默认为0.0
+        type: float
+        description: 速度，范围[0~100]，暂不开放，默认为0
       - name: acc
-        type: double
-        description: 加速度，范围[0.0~100.0]，暂不开放，默认为0.0
+        type: float
+        description: 加速度，范围[0~100]，暂不开放，默认为0
       - name: ovl
-        type: double
-        description: 速度缩放因子，[0.0~100.0]
+        type: float
+        description: 速度缩放因子，[0~100]
       - name: blendR
-        type: double
-        description: 平滑半径-[0.0~1000.0]，单位[mm]
+        type: float
+        description: 平滑半径-[0~1000]，单位[mm]
       - name: lastFlag
         type: int
         description: 是否为最后一个点，0-否，1-是

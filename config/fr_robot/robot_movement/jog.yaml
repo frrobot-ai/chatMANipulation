@@ -13,13 +13,13 @@
         type: int
         description: 0-负方向,1-正方向
       - name: vel
-        type: double
-        description: 速度百分比，[0.0~100.0]
+        type: float
+        description: 速度百分比，[0~100]
       - name: acc
-        type: double
-        description: 加速度百分比，[0.0~100.0]
+        type: float
+        description: 加速度百分比，[0~100]
       - name: max_dis
-        type: double
+        type: float
         description: 单次点动最大角度/距离,单位°或mm
     return: 成功：[0],失败：[errcode]
 

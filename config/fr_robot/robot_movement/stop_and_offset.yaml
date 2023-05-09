@@ -16,8 +16,8 @@
         type: int
         description: 0-基坐标或工件坐标系下偏移， 2-工具坐标系下偏移
       - name: offset_pos
-        type: double
-        description: 偏移量，单位[mm][°]，默认[0.0,0.0,0.0,0.0,0.0,0.0]
+        type: float
+        description: 偏移量，单位[mm][°]
     return: 成功：[0],失败：[errcode]
     
 - function:

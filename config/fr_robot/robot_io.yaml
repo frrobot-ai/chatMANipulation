@@ -43,8 +43,8 @@
         type: int
         description: io编号，范围[0~1]
       - name: value
-        type: double
-        description: 电流或电压值百分比，范围[0.0~100.0]，对应电流值[0~20mA]或电压[0~10V]
+        type: float
+        description: 电流或电压值百分比，范围[0~100%]对应电流值[0~20mA]或电压[0~10V]
       - name: block
         type: int
         description: 阻塞-[0]，非阻塞-[1]
@@ -58,8 +58,8 @@
         type: int
         description: io编号，范围[0]
       - name: value
-        type: double
-        description: 电流或电压值百分比，范围[0.0~100.0]，对应电流值[0~20mA]或电压[0~10V]
+        type: float
+        description: 电流或电压值百分比，范围[0~100%]对应电流值[0~20mA]或电压[0~10V]
       - name: block
         type: int
         description: 阻塞-[0]，非阻塞-[1]
@@ -100,7 +100,7 @@
         type: int
         description: 0-关，1-开
       - name: maxtime
-        type: double
+        type: float
         description: 最大等待时间，单位[ms]
       - name: opt
         type: int
@@ -121,7 +121,7 @@
         type: int
         description: bit0~bit7对应DI0~DI7状态，bit8~bit15对应CI0~CI7状态位的状态[0]-关，[1]-开
       - name: maxtime
-        type: double
+        type: float
         description: 最大等待时间，单位[ms]
       - name: opt
         type: int
@@ -139,7 +139,7 @@
         type: int
         description: 0-关，1-开
       - name: maxtime
-        type: double
+        type: float
         description: 最大等待时间，单位[ms]
       - name: opt
         type: int
@@ -156,7 +156,7 @@
       - name: block
         type: int
         description: 0-阻塞，1-非阻塞
-    return: 成功：[0,value], value:输入电流或电压值百分比，范围[0.0~100.0]，对应电流值[0~20mA]或电压[0~10V];失败：[errcode]
+    return: 成功：[0,value], value:输入电流或电压值百分比，范围[0~100]对应电流值[0~20mA]或电压[0~10V];失败：[errcode]
 
 - function:
     name: GetToolAI(id,block)
@@ -168,7 +168,7 @@
       - name: block
         type: int
         description: 0-阻塞，1-非阻塞
-    return: 成功：[0,value], value:输入电流或电压值百分比，范围[0.0~100.0]，对应电流值[0~20mA]或电压[0~10V];失败：[errcode]
+    return: 成功：[0,value], value:输入电流或电压值百分比，范围[0~100]对应电流值[0~20mA]或电压[0~10V];失败：[errcode]
   
 - function:
     name: WaitAI(id,sign,value,maxtime,opt)
@@ -181,10 +181,10 @@
         type: int
         description: 0-大于，1-小于
       - name: value
-        type: double
-        description: 输入电流或电压值百分比，范围[0.0~100.0]，对应电流值[0~20mA]或电压[0~10V]
+        type: float
+        description: 输入电流或电压值百分比，范围[0~100]对应电流值[0~20mA]或电压[0~10V]
       - name: maxtime
-        type: double
+        type: float
         description: 最大等待时间，单位[ms]
       - name: opt
         type: int
@@ -202,10 +202,10 @@
         type: int
         description: 0-大于，1-小于
       - name: value
-        type: double
-        description: 输入电流或电压值百分比，范围[0.0~100.0]，对应电流值[0~20mA]或电压[0~10V]
+        type: float
+        description: 输入电流或电压值百分比，范围[0~100]对应电流值[0~20mA]或电压[0~10V]
       - name: maxtime
-        type: double
+        type: float
         description: 最大等待时间，单位[ms]
       - name: opt
         type: int

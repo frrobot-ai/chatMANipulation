@@ -6,6 +6,7 @@
 
 # Importing libs
 from frchat.frchatbot import FRChatBot
+import re
 from dotenv import load_dotenv, find_dotenv
 _ = load_dotenv(find_dotenv("dev.env"))  # read local .env file
 
@@ -18,12 +19,17 @@ import datetime
 messages = [
     {'role':'system', 'content':'你是一个机器人用户助手,帮助用户控制一个6关节机器人运动, \
      你需要组合使用一些函数来完成特定任务,只使用用户提供的函数,不要自行引入其他第三方库(如RoboDK)'},
-    {'role':'user', 'content':'你好,请编写机器人控制指令,假设已实例化对象robot=frrpc.RPC("192.168.58.2"), \
+    {'role':'user', 'content':'你好,请编写机器人控制指令,假设已实例化对象robot=frrpc.RPC(192.168.58.2), \
      用户提供的函数均为对象的方法.请在每次输出程序时加上机器人实例化部分的指令'},
     {'role':'assistant', 'content':'好的，请告诉我能够使用哪些函数'},
+    {'role':'user','content':'我需要添加一些约束条件：最终生成的代码都需要是可执行的函数，并返回函数名称'},
+    {'role':'assistant','content':'好的'},
+    {'role': 'user', 'content': '最终返回一个可执行的main函数'},
+    {'role': 'assistant', 'content': '好的'},
+
 ]
 ## Instantiating a ChatBot
-frcb = FRChatBot(messages, temperature=0.1, history_num_to_del=2)
+frcb = FRChatBot(messages, temperature=0.1)
 
 # 交互界面
 ## 创建主窗口
@@ -120,24 +126,56 @@ def on_input_change(*_):
 text_input.bind("<KeyPress>", on_input_change)
 
 ### 处理用户输入并返回消息
+
 def process_message():
+    time_step = 0
     prompt= text_input.get("1.0", "end")
-    # print(prompt)
+    # print('prompt:',prompt)
     if prompt:            
         text_input.delete("1.0", "end")
         save_input_history(prompt)
         text_input.see('end')
         now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         response = frcb.chat(prompt)
+        # 这个保存的结果需要做一个切片
+        #处理信息返回
         output_content = response
+        pattern = re.compile(r"```python([\s\S]*?)```")
+        matches = pattern.findall(output_content)
+
+        # 将匹配到的内容保存到 txt 文件中
+        with open('test.py', 'w',encoding='utf-8') as f:
+            for match in matches:
+                f.write(f"\n{match}\n\n")
+        try:
+            from test import main
+            main()
+            print('运行成功')
+        except Exception as e:
+            print('所有的错误，我都在这里处理掉%s' % e)
+            # 按照错误类型重新修改,并重新提交问题
+            error_question_prompt=str(e)
+            response=frcb.chat(prompt+error_question_prompt)
+            output_content = response
+            pattern = re.compile(r"```python([\s\S]*?)```")
+            matches = pattern.findall(output_content)
+            with open('test.py', 'w', encoding='utf-8') as f:
+                for match in matches:
+                    f.write(f"\n{match}\n\n")
+        print('time_step', time_step)
+        time_step+=1
         text_output.configure(state="normal")
         text_output.insert("end", f"\n-----{now}-----\n{output_content}\n")
         text_output.configure(state="disabled")
         text_output.see('end')
+        return output_content
+
+
 
 ### 定义发送消息函数
 def send_message(event):
-    process_message()
+    output_content=process_message()
+    print('output-content:',output_content)
 
 ### 绑定Ctrl+s事件，发送消息
 root.bind("<Control-Key-s>", send_message)

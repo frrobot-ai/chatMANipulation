@@ -2,25 +2,25 @@ import openai
 import yaml
 import os
 
-
 class FRChatBot(object):
     """
         A ChatBot generating command to control FR Cobots
 
         Author: wangyan
         Date: 2023/05/04
+
+         A ChatBot generating command to control FR Cobots limit
+         Author:Shujian
+         Date:2023/05/09
     """
     
     def __init__(self, 
                  messages, 
                  temperature=0.3, 
-                 model="gpt-3.5-turbo",
-                 history_num_to_del=0) -> None:
+                 model="gpt-3.5-turbo") -> None:
         self.messages = messages
         self.temperature = temperature  # this is the degree of the randomness of the response
         self.model = model
-        self.history_num_to_del = history_num_to_del
-        self.message_history_index=0    # use index to delete several oldest messages
         openai.api_key = os.getenv('OPENAI_API_KEY')
 
     def get_completion_from_messages(self, messages, temperature, model):
@@ -38,18 +38,12 @@ class FRChatBot(object):
 
     def chat(self, prompt):
         print(f"USER:{prompt}\n==========\n")
-   
         self.messages.append(self.build_message('user', prompt))
         response = self.get_completion_from_messages(messages=self.messages, 
                                                      temperature=self.temperature,
                                                      model=self.model)
         print(f"FR:{response}")
-        self.messages.append(self.build_message('assistant', response))          
-        if self.message_history_index==self.history_num_to_del:
-            del self.messages[0]
-            del self.messages[1]
-        else:
-            self.message_history_index=self.message_history_index+1
+        self.messages.append(self.build_message('assistant', response))
         return response
 
     def generate_function_list(self, file):

@@ -121,13 +121,13 @@
         type: int
         description: 六个自由度是否检测碰撞[fx,fy,fz,mx,my,mz]，0-不生效，1-生效
       - name: force_torque
-        type: double
+        type: float
         description: 碰撞检测力/力矩，单位N或Nm
       - name: max_threshold
-        type: double
+        type: float
         description: 最大阈值
       - name: min_threshold
-        type: double
+        type: float
         description: 最小阈值, 力/力矩检测范围为(force_torque-min_threshold,force_torque+max_threshold)
     return: 成功：[0],失败：[errcode]
 
@@ -145,23 +145,23 @@
         type: int
         description: 六个自由度是否检测碰撞[fx,fy,fz,mx,my,mz]，0-不生效，1-生效
       - name: force_torque
-        type: double
+        type: float
         description: 检测力/力矩，单位N或Nm
       - name: gain
-        type: double
+        type: float
         description: 力、力矩PID参数，[f_p,f_i,f_d,m_p,m_i,m_d]
       - name: adj_sign
         type: int
         description: 自适应启停状态，0-关闭，1-开启
       - name: ILC_sign
-        type: int
+        type: float
         description: ILC控制启停状态，0-停止，1-训练，2-实操
       - name: max_dis
-        type: double
-        description: 最大调整距离，单位mm
+        type: float
+        description: 最大调整距离
       - name: max_ang
-        type: double
-        description: 最大调整角度，单位°
+        type: float
+        description: 最大调整角度
     return: 成功：[0],失败：[errcode]
 
 - function:
@@ -172,16 +172,16 @@
         type: int
         description: 参考坐标系，0-工具坐标系，1-基坐标系
       - name: dr
-        type: double
+        type: float
         description: 每圈半径进给量，单位mm
       - name: fFinish
-        type: double
+        type: float
         description: 力或力矩阈值(0~100)，单位N或Nm
       - name: t
-        type: double
+        type: float
         description: 最大探索时间，单位ms
       - name: vmax
-        type: double
+        type: float
         description: 线速度最大值，单位mm/s
     return: 成功：[0],失败：[errcode]
 
@@ -193,20 +193,20 @@
         type: int
         description: 参考坐标系，0-工具坐标系，1-基坐标系
       - name: angVelRot
-        type: double
+        type: float
         description: 旋转角速度，单位°/s
       - name: forceInsertion
-        type: double
+        type: float
         description: 力或力矩阈值(0~100)，单位N或Nm
       - name: angleMax
-        type: double
+        type: float
         description: 最大旋转角度，单位°
       - name: orn
         type: int
         description: 力的方向，1-fz,2-mz
       - name: angAccmax
-        type: double
-        description: 最大旋转加速度，单位°/s^2，暂不使用，默认为0.0
+        type: float
+        description: 最大旋转加速度，单位°/s^2，暂不使用
       - name: rotorn
         type: int
         description: 旋转方向，1-顺时针，2-逆时针
@@ -220,16 +220,16 @@
         type: int
         description: 参考坐标系，0-工具坐标系，1-基坐标系
       - name: force_goal
-        type: double
+        type: float
         description: 力或力矩阈值(0~100)，单位N或Nm
       - name: lin_v
-        type: double
+        type: float
         description: 直线速度，单位mm/s
       - name: lin_a
-        type: double
-        description: 直线加速度，单位mm/s^2，暂不使用，默认为0.0
+        type: float
+        description: 直线加速度，单位mm/s^2，暂不使用
       - name: disMax
-        type: double
+        type: float
         description: 最大插入距离，单位mm
       - name: linorn
         type: int
@@ -268,16 +268,16 @@
         type: int
         description: 移动轴，1-x，2-y，3-z
       - name: lin_v
-        type: double
+        type: float
         description: 探索直线速度，单位mm/s
       - name: lin_a
-        type: double
+        type: float
         description: 探索直线加速度，单位mm/s^2
       - name: disMax
-        type: double
+        type: float
         description: 最大探索距离，单位mm
       - name: force_goal
-        type: double
+        type: float
         description: 动作终止力阈值，单位N
     return: 成功：[0],失败：[errcode]
 
@@ -286,10 +286,10 @@
     description: 柔顺控制开启
     arguments:
       - name: p
-        type: double
+        type: float
         description: 位置调节系数或柔顺系数
       - name: force
-        type: double
+        type: float
         description: 柔顺开启力阈值，单位N
     return: 成功：[0],失败：[errcode]
 

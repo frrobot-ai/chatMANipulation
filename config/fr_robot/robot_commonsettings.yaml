@@ -4,8 +4,8 @@
     description: 设置全局速度
     arguments:
       - name: vel
-        type: double
-        description: 速度百分比，范围[0.0~100.0]
+        type: float
+        description: 速度百分比，范围[0~100]
     return: 成功：[0],失败：[errcode]
   
 - function:
@@ -16,7 +16,7 @@
         type: int
         description: 变量编号，范围[1~20]
       - name: value
-        type: double
+        type: float
         description: 变量值
     return: 成功：[0],失败：[errcode]
 
@@ -28,7 +28,7 @@
         type: int
         description: 坐标系编号，范围[0~14]
       - name: t_coord
-        type: double
+        type: float
         description: 工具中心点相对末端法兰中心位姿，单位[mm][°]
       - name: type
         type: int
@@ -46,7 +46,7 @@
         type: int
         description: 坐标系编号，范围[0~14]
       - name: t_coord
-        type: double
+        type: float
         description: 工具中心点相对末端法兰中心位姿，单位[mm][°]
       - name: type
         type: int
@@ -64,11 +64,11 @@
         type: int
         description: 坐标系编号，范围[0~14]
       - name: etcp
-        type: double
-        description: 外部工具坐标系，单位[mm][°]，默认[0.0,0.0,0.0,0.0,0.0,0.0]
+        type: float
+        description: 外部工具坐标系，单位[mm][°]
       - name: etool
-        type: double
-        description: 末端工具坐标系，单位[mm][°]，默认[0.0,0.0,0.0,0.0,0.0,0.0]
+        type: float
+        description: 末端工具坐标系，单位[mm][°]
     return: 成功：[0],失败：[errcode]
 
 - function:
@@ -79,11 +79,11 @@
         type: int
         description: 坐标系编号，范围[0~14]
       - name: etcp
-        type: double
-        description: 外部工具坐标系，单位[mm][°]，默认[0.0,0.0,0.0,0.0,0.0,0.0]
+        type: float
+        description: 外部工具坐标系，单位[mm][°]
       - name: etool
-        type: double
-        description: 末端工具坐标系，单位[mm][°]，默认[0.0,0.0,0.0,0.0,0.0,0.0]
+        type: float
+        description: 末端工具坐标系，单位[mm][°]
     return: 成功：[0],失败：[errcode]
 
 - function:
@@ -94,8 +94,8 @@
         type: int
         description: 坐标系编号，范围[0~14]
       - name: w_coord
-        type: double
-        description: 坐标系相对位姿，单位[mm][°]，默认[0.0,0.0,0.0,0.0,0.0,0.0]
+        type: float
+        description: 坐标系相对位姿，单位[mm][°]
     return: 成功：[0],失败：[errcode]
 
 - function:
@@ -106,8 +106,8 @@
         type: int
         description: 坐标系编号，范围[0~14]
       - name: w_coord
-        type: double
-        description: 坐标系相对位姿，单位[mm][°]，默认[0.0,0.0,0.0,0.0,0.0,0.0]
+        type: float
+        description: 坐标系相对位姿，单位[mm][°]
     return: 成功：[0],失败：[errcode]
 
 - function:
@@ -115,7 +115,7 @@
     description: 设置末端负载重量
     arguments:
       - name: weight
-        type: double
+        type: float
         description: 单位[kg]
     return: 成功：[0],失败：[errcode]
 
@@ -133,10 +133,10 @@
     description: 设置机器人安装角度-自由安装
     arguments:
       - name: yangle
-        type: double
+        type: float
         description: 倾斜角
       - name: zangle
-        type: double
+        type: float
         description: 旋转角
     return: 成功：[0],失败：[errcode]
 
@@ -145,13 +145,13 @@
     description: 设置末端负载质心坐标
     arguments:
       - name: x
-        type: double
+        type: float
         description: 质心x坐标，单位[mm]
       - name: y
-        type: double
+        type: float
         description: 质心y坐标，单位[mm]
       - name: z
-        type: double
+        type: float
         description: 质心z坐标，单位[mm]
     return: 成功：[0],失败：[errcode]
 
@@ -160,6 +160,6 @@
     description: 等待指定时间
     arguments:
       - name: t_ms
-        type: double
+        type: float
         description: 等待时间，单位[ms]
     return: 成功：[0],失败：[errcode]

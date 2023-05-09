@@ -79,7 +79,7 @@
         type: int
         description: 0-绝对位姿(基坐标系)，1-相对位姿（基坐标系），2-相对位姿（工具坐标系）
       - name: desc_pose
-        type: double
+        type: float
         description: 工具位姿，[x,y,z,rx,ry,rz]，单位[mm][°]
       - name: config
         type: int
@@ -91,10 +91,10 @@
     description: 逆运动学，工具位姿求解关节位置，参考指定关节位置求解
     arguments:
       - name: desc_pose
-        type: double
+        type: float
         description: 工具位姿，[x,y,z,rx,ry,rz]，单位[mm][°]
       - name: joint_pos_ref
-        type: double
+        type: float
         description: 关节参考位置，[j1,j2,j3,j4,j5,j6]，单位[°]
     return: 成功：[0,joint_pos],joint_pos=[j1,j2,j3,j4,j5,j6];失败：[errcode]
 
@@ -103,10 +103,10 @@
     description: 逆运动学，工具位姿求解关节位置 是否有解
     arguments:
       - name: desc_pose
-        type: double
+        type: float
         description: 工具位姿，[x,y,z,rx,ry,rz]，单位[mm][°]
       - name: joint_pos_ref
-        type: double
+        type: float
         description: 关节参考位置，[j1,j2,j3,j4,j5,j6]，单位[°]
     return: 成功：[0,result],“True”-有解，“False”-无解;失败：[errcode]
 
@@ -115,7 +115,7 @@
     description: 正运动学，关节位置求解工具位姿
     arguments:
       - name: joint_pos
-        type: double
+        type: float
         description: 关节位置，[j1,j2,j3,j4,j5,j6]，单位[°]
     return: 成功：[0,desc_pos],desc_pos=[x,y,z,rx,ry,rz]:工具位姿，单位[mm][°];失败：[errcode]
 
