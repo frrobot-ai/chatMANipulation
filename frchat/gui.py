@@ -16,7 +16,7 @@ class FRChatGUI(object):
         Date: 2023/05/23
     """
 
-    def __init__(self, title, width=1024, height=512, font=('Times New Roman', 10)) -> None:
+    def __init__(self, title, width=1024, height=512, font=('Times New Roman', 10), robot_connect=False):
         self.bot = FRChatBot(MSG_RBTCMD_INTRO, temperature=0.1, history_num_to_del=3)
         self.title = title
         self.width = width
@@ -28,6 +28,7 @@ class FRChatGUI(object):
         self.text_input_history = None
         self.text_input = None
         self.text_output = None
+        self.robot_connect = robot_connect
 
     def create_gui(self):
         """
@@ -174,7 +175,7 @@ class FRChatGUI(object):
             with open('test.py', 'w', encoding='utf-8') as f:
                 for match in matches:
                     f.write(f"{match}\n")
-            if robot_connect:
+            if self.robot_connect:
                 try:
                     from test import main
                     main()
